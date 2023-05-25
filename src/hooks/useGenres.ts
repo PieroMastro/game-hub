@@ -6,6 +6,7 @@ import useGames from "./useGames";
 export interface Genre {
   id: number;
   name: string;
+  image_background: string;
 }
 
 interface FetchGenresResponse {
