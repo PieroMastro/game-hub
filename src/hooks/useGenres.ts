@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
-import useGames from "./useGames";
 
 export interface Genre {
   id: number;
@@ -17,22 +16,28 @@ interface FetchGenresResponse {
 const useGenres = () => {
   const [genres, setGenres] = useState<Genre[]>([]);
   const [error, setError] = useState("");
-  // const [loading, isLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
+
+    setLoading(true);
     apiClient
       .get<FetchGenresResponse>("/genres", { signal: controller.signal })
-      .then((response) => setGenres(response.data.results))
+      .then((response) => {
+        setGenres(response.data.results);
+        setLoading(false);
+      })
       .catch((error) => {
         if (error instanceof CanceledError) return;
         setError(error.message);
+        setLoading(false);
       });
 
     return () => controller.abort();
   }, []);
 
-  return { genres, error };
+  return { genres, error, isLoading };
 };
 
 export default useGenres;
