@@ -1,4 +1,3 @@
-import React from "react";
 import useGenres, { Genre } from "../hooks/useGenres";
 import {
   Button,
@@ -16,14 +15,14 @@ interface Props {
 }
 
 const GenreList = ({ onSelectGenre }: Props) => {
-  const { genres, isLoading, error } = useGenres();
+  const { data, isLoading, error } = useGenres();
 
   if (error) return null;
   if (isLoading) return <Spinner />;
 
   return (
     <List>
-      {genres.map((genre) => (
+      {data.map((genre) => (
         <ListItem key={genre.id} paddingY="5px">
           <HStack>
             <Img
