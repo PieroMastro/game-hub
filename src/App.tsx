@@ -57,8 +57,9 @@ function App() {
         <GameGrid
           // selectedGenre={selectedGenre}
           // selectedPlatform={selectedPlatform}
-          selectedGenre={gameQuery.genre}
-          selectedPlatform={gameQuery.platform}
+          // selectedPlatform={gameQuery.platform} <--- modified when updated the GameGrid component.
+          // selectedGenre={gameQuery.genre} <--- modified when updated the GameGrid component.
+          gameQuery={gameQuery}
         />
       </GridItem>
     </Grid>
