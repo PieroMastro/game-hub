@@ -1,5 +1,7 @@
+import noImage from "../assets/noImage.png";
+
 const getCroppedImgURL = (url: string) => {
-  if (!url) return "";
+  if (!url) return noImage;
 
   const target = "media/";
   const index = url.indexOf(target) + target.length;
