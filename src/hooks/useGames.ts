@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { GameQuery } from "../App";
 import apiClient from "../services/api-client";
-import { FetchResponse } from "./useData";
+import { FetchResponse } from "../services/api-client";
 
 export interface Platform {
   id: number;
@@ -26,7 +26,8 @@ const useGames = (gameQuery: GameQuery) =>
         .get<FetchResponse<Game>>("/games", {
           params: {
             genres: gameQuery.genre?.id,
-            platforms: gameQuery.platform?.id,
+            // platforms: gameQuery.platform?.id, | Using this parameter will lead to an error fetching Playstation data.
+            parent_platforms: gameQuery.platform?.id, // Using this parameter will get all playstation games under one single platform.
             ordering: gameQuery.sortOrder,
             search: gameQuery.searchText,
           },

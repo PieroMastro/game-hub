@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import useData, { FetchResponse } from "./useData";
+import { FetchResponse } from "../services/api-client";
 import apiClient from "../services/api-client";
 
 interface Platform {
@@ -13,7 +13,7 @@ const usePlatforms = () =>
     queryKey: ["platforms"],
     queryFn: () =>
       apiClient
-        .get<FetchResponse<Platform>>("/platforms") // if I use the endpoint: '/platforms/lists/parents' playstation games will not render **revise later
+        .get<FetchResponse<Platform>>("/platforms/lists/parents") // if I use the endpoint: '/platforms/' will get every platform available for games (check useGames.ts hook for info)
         .then((response) => response.data),
     staleTime: 24 * 60 * 60 * 1000,
   });
