@@ -29,6 +29,9 @@ const useGames = (gameQuery: GameQuery) =>
           page: pageParam,
         },
       }),
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.next ? allPages.length + 1 : undefined;
+    },
     staleTime: 24 * 60 * 60 * 1000, //24h
     // queryFn: () =>
     //   apiClient
@@ -41,9 +44,6 @@ const useGames = (gameQuery: GameQuery) =>
     //       },
     //     })
     //     .then((res) => res.data),
-    getNextPageParam: (lastPage, allPages) => {
-      return lastPage.next ? allPages.length + 1 : undefined;
-    },
   });
 
 export default useGames;
