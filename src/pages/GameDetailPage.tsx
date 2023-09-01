@@ -5,6 +5,7 @@ import useGame from "../hooks/useGame";
 import GameAtributes from "../components/GameAtributes";
 import GameTrailer from "../components/GameTrailer";
 import GameScreenshots from "../components/GameScreenshots";
+import Footer from "../components/Footer";
 
 const GameDetailPage = () => {
   const { slug } = useParams();
@@ -15,17 +16,20 @@ const GameDetailPage = () => {
   if (error || !game) throw error;
 
   return (
-    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
-      <GridItem>
-        <Heading>{game.name}</Heading>
-        <ExpandableText>{game.description_raw}</ExpandableText>
-        <GameAtributes game={game} />
-      </GridItem>
-      <GridItem>
-        <GameScreenshots gameId={game.id} />
-        {/* <GameTrailer gameId={game.id} /> */}
-      </GridItem>
-    </SimpleGrid>
+    <>
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
+        <GridItem>
+          <Heading>{game.name}</Heading>
+          <ExpandableText>{game.description_raw}</ExpandableText>
+          <GameAtributes game={game} />
+        </GridItem>
+        <GridItem>
+          <GameScreenshots gameId={game.id} />
+          {/* <GameTrailer gameId={game.id} /> */}
+        </GridItem>
+      </SimpleGrid>
+      <Footer />
+    </>
   );
 };
 
