@@ -25,13 +25,23 @@ const Footer = () => {
       >
         <Text>Made with ❤ by PieroMastro</Text>
         <Stack direction={"row"} spacing={6}>
-          <Button>
+          <Button
+            as="a"
+            href="https://www.linkedin.com/in/pieromastro"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaLinkedin />
           </Button>
-          <Button>
+          <Button
+            as="a"
+            href="https://github.com/PieroMastro"
+            target="blank"
+            rel="noopener noreferer"
+          >
             <FaGithub />
           </Button>
-          <Button>
+          <Button as="a" href="mailto:pier.andres@gmail.com">
             <FaEnvelope />
           </Button>
         </Stack>
